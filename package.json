@@ -1,5 +1,5 @@
 {
-  "name": "plebiSite",
+  "name": "plebisite",
   "version": "1.0.0",
   "description": "A plebiscite or referendum is a type of voting, or of proposing laws.",
   "main": "server.js",
