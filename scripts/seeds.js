@@ -5,8 +5,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mongoWatchList"
 
 const userSeed = [
   {
-    user_first_name: "Fred",
-    user_last_name: "Flinstone",
     user_email: "fred@email.com",
     password: "passWord123"
   }
