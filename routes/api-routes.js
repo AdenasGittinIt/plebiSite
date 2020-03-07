@@ -1,24 +1,28 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
-module.exports = function(app) {
 
-  app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    console.log(req.user)
-    res.json(req.user);
-  });
+module.exports = function(app) {
+  app.post( "/api/login", passport.authenticate("local"),
+    function(req, res) {
+      console.log(req.user)
+      res.json(req.user);
+    }
+  );
 
   app.post("/api/register", function(req, res) {
     db.User.create({
       email: req.body.email,
       password: req.body.password
     })
-      .then(function() {
-        res.redirect(307, "/api/login");
+      .then(function(response) {
+        console.log(response + "You successfully registered");
+        // res.redirect(307, "/api/login");
+        res.send(200)
       })
       .catch(function(err) {
         res.status(401).json(err);
-        console.log("registration failed")
+        console.log("registration failed");
       });
   });
 
@@ -29,10 +33,8 @@ module.exports = function(app) {
 
   app.get("/api/user_watchlist", function(req, res) {
     if (!req.user) {
-    
       res.json({});
     } else {
-    
       res.json({
         email: req.user.email,
         id: req.user.id
@@ -40,8 +42,6 @@ module.exports = function(app) {
     }
   });
 };
-
-
 
 // const APIRoutes = function(app) {
 //   app.get("/api/users", function(req,res) {
@@ -51,8 +51,5 @@ module.exports = function(app) {
 //     })
 //   })
 // }
-
-
-
 
 // module.exports = APIRoutes

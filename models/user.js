@@ -54,11 +54,13 @@ usersSchema.pre('save', function(next) {
   });
 });
 
-usersSchema.methods.comparePassword = function(candidatePassword, cb) {
+usersSchema.methods.verifyPassword = function(candidatePassword) {
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-      if (err) return cb(err);
-      cb(null, isMatch);
+    console.log(this.password, candidatePassword)
+    if (err) return err;
+    return isMatch;
   });
+  
 };
 
 module.exports = mongoose.model('User', usersSchema);

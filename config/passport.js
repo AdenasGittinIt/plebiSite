@@ -3,31 +3,25 @@ const LocalStrategy = require("passport-local").Strategy;
 const db = require("../models");
 
 
+
 passport.use(new LocalStrategy(
   {
     usernameField: "email"
   },
   function(email, password, done) {
-    db.User.findOne({
-      where: {
-        email: email
+    db.User.findOne({ email: email }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
       }
-    }).then(function(dbUser) {
-      console.log(dbUser)
-      if (!dbUser) {
-        return done(null, false, {
-          message: "We couldn't find your email, please try again or registered here"
-        });
+      if (!user.verifyPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
       }
-      else if (!dbUser.validPassword(password)) {
-        return done(null, false, {
-          message: "Incorrect password. Please try again"
-        });
-      }
-      return done(null, dbUser);
+      return done(null, user);
     });
   }
 ));
+
 
 passport.serializeUser(function(user, cb) {
   cb(null, user);
