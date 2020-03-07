@@ -58,3 +58,12 @@ passport.use(new LocalStrategy(
       return done(null, user)
     });
   }
+
+  User.find({name:'vlad','links.url':req.params.query}, function(err, foundUsers){
+    // ---
+ });
+
+ app.post( "/api/login", passport.authenticate("local"),
+ function(req, res) {
+   res.json(req.user);
+ });
