@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const watchlistSchema = new Schema (
   {
-    member_id: {
+    member_id: { //congress member id
       type: String, 
       required: true
     },
