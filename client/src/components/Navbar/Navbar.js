@@ -2,7 +2,7 @@ import React from "react";
 import { FormGroup, Label, Input, Button, Navbar} from "reactstrap";
 
 
-const Navigate = () => {
+const NavBar = () => {
   return (
     <Navbar inline>
       <Button>Home</Button>
@@ -12,4 +12,4 @@ const Navigate = () => {
   )
 }
 
-export default Navigate
+export default NavBar
