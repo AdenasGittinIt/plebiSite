@@ -25,6 +25,7 @@ function App() {
         <Switch>
           <Route exact path="/splashpage" component={SplashPage}/>
           <Route exact path="/registration" component={RegistrationForm} />
+          <Route exact path="/houseresults" component={MemberListing} />
         </Switch>
       </Container>
     </Router>

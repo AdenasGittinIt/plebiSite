@@ -1,5 +1,6 @@
 import React from "react";
 import useRegistrationForm from "../../utils/CustomHooks";
+import { FormGroup } from "reactstrap";
 
 const RegistrationForm = props => {
   //destructuring the registration form object so the state variable and handler funtions can be used.
@@ -8,7 +9,7 @@ const RegistrationForm = props => {
   }
   const {inputs, handleInputChange, handleSubmit} = useRegistrationForm(register);
   return (
-    <form onSubmit={handleSubmit}>
+    <FormGroup onSubmit={handleSubmit}>
       <div>
         <label>email address</label>
         <input type="email" name="email address" required onChange={handleInputChange} value={inputs.email}/>
@@ -22,7 +23,7 @@ const RegistrationForm = props => {
         <input type="password" name="password2" required onChange={handleInputChange} value={inputs.password2} />
       </div>
       <button type="submit">Register</button>
-    </form>
+    </FormGroup>
   )
 }
 

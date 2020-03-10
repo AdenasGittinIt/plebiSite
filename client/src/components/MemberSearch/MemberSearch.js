@@ -1,8 +1,17 @@
 import React from "react";
+import { Container, Row, Col } from "reactstrap";
+
 
 const MemberSearch = props => {
   return (
-    <h2>Member Search</h2>
+    <Container>
+      <Row>
+        <Col>
+          <h2>Member Search</h2>
+        </Col>
+      </Row>
+    </Container>
+    
   )
 }
 

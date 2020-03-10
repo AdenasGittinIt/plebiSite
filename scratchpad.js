@@ -63,3 +63,15 @@ export default SearchForm;
        </div>
        <button type="submit">Sign Up</button>
      </form>
+     
+
+     //Alternative display as cards for the house or senate search results
+
+
+     {member.first_name},
+     {member.last_name},
+     {member}
+
+    //  ./data/sample.json
+
+    {console.log(results[0].members)}
