@@ -37,4 +37,5 @@ export default SearchForm;
  nextElection={sampleData.results[0].roles[0].next_election}
  />
 
-
+ <input type="image" id="image" alt="Login"
+       src="/media/examples/login-button.png"></input>
