@@ -24,6 +24,7 @@ function App() {
       <Container>
         <Switch>
           <Route exact path="/splashpage" component={SplashPage}/>
+          <Route exact path="/registration" component={RegistrationForm} />
         </Switch>
       </Container>
     </Router>

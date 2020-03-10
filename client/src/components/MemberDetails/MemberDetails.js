@@ -6,7 +6,7 @@ import { Container } from "reactstrap";
 const memberDetails = props => {
   return (
     <Container>
-    <img src={`https://theunitedstates.io/images/congress/225x275/${props.image}.jpg`}></img>
+    <img src={`https://theunitedstates.io/images/congress/225x275/${props.image}.jpg`} alt={`Photo of ${props.firstName}`}></img>
     <h2>Name: {props.firstName} {props.lastName}</h2>
     <h3>DOB: {props.dob}</h3>
     <h3>Next Election: {props.nextElection}</h3>
