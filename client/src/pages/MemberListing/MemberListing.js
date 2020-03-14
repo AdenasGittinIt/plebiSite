@@ -6,17 +6,18 @@ import NavBar from "../../components/Navbar/Navbar";
 
 const MemberListing = () => {
   const [membersInfo, updateMembersInfo ] = useState({
-    chamber: "Senate",
     members: [],
   });
-  const { chamber, members } = membersInfo;
+  const { members } = membersInfo;
 
   useEffect(() => {
-    getMembers("Senate") 
-  },[members]);
+    const windowChamber = window.location.pathname.split("/")[2].split(".")[0];
+    console.log(windowChamber)
+    getMembers(windowChamber) 
+  },[]);
 
-  const getMembers = chamber => {
-    API.getMembers(chamber)
+  const getMembers = congressChamber => {
+    API.getMembers(congressChamber)
     .then(res => {
       // console.log(res.data.results[0].chamber, res.data.results[0].members)
       updateMembersInfo({

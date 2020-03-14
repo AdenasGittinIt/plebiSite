@@ -14,9 +14,7 @@ const Home = () => {
             <p className="lead text-center">See how well congress represents you</p>
             <hr className="my-2" />
             <p className="lead text-center">Select a branch of congress to explore or log in to view your watchlist</p>
-            <p className="lead">
-              <Navbar />
-            </p>
+          <Navbar />
           </Jumbotron>
         </Col>
       </Row>

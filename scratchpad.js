@@ -286,3 +286,64 @@ const LoginForm = props => {
 }
 
 export default LoginForm;
+
+app.post('/register', function(req, res){
+  var password = req.body.password;
+  var password2 = req.body.password2;
+
+  if (password == password2){
+    var newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password
+    });
+
+    User.createUser(newUser, function(err, user){
+      if(err) throw err;
+      res.send(user).end()
+    });
+  } else{
+    res.status(500).send("{errors: \"Passwords don't match\"}").end()
+  }
+});
+
+const newUser = new User({
+  email: req.body.email,
+  password: req.body.password
+});
+
+
+//use the built-in useState hook to keep track of all input values inside the form
+import { useState } from "react";
+
+//component will take a callback as an input parameter
+const useRegistrationForm = (callback) => {
+  //use the useState hook to initialize a state variable and its setter function
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+    password2: ""
+  });
+  //a function that manages the submit event
+  const handleSubmit = (event) => {
+    if (event) {
+      event.preventDefault();
+      setInputs();
+    }
+  }
+  // const handleInputChange = (event) => {
+  // //a function to manage the event where the user gives some input
+  //   event.persist();
+  //   setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}));
+  // }
+  // return the above functions
+  return {
+    handleSubmit,
+    // handleInputChange,
+    inputs
+  };
+}
+
+export default useRegistrationForm;
+

@@ -25,5 +25,16 @@ export default {
 
   addToWatchlist: function(savedMember) {
     return axios.post(`/api/user_watchlist`, savedMember)
+  },
+
+  getWatchlist: function(email) {
+    return axios.get(`/api/user_watchlist`, email)
+  },
+
+  registerNewUser: function(registrant) {
+    return axios.post( "/api/register", registrant)
+    .catch(err => {
+      console.log(err);
+    })
   }
 };

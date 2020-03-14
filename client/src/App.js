@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Login from './components/Login/Login';
+// import Login from './components/Login/Login';
 // import LogoButton from './components/LogoButton/LogoButton';
 // import MemberCard from './components/MemberCard/MemberCard'; 
 import MemberDetails from './pages/MemberDetails/MemberDetails'; 
@@ -22,9 +22,8 @@ function App() {
           <Route exact path="/splashpage" component={SplashPage}/>
           <Route exact path="/" component={Home}/> 
           <Route exact path="/registration" component={RegistrationForm} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/results" component={MemberListing} />
-          <Route exact path="/memberlisting" component={MemberListing} />
+          {/* <Route exact path="/login" component={Login} /> */}
+          <Route exact path="/memberlisting/:chamber" component={MemberListing} />
           <Route exact path="/memberdetails/:id" component={MemberDetails} />
         </Switch>
     </Router>

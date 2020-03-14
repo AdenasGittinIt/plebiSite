@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  Container, Col, Row, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button } from "reactstrap";
+  Container, Col, Row, ListGroup, ListGroupItem, ListGroupItemHeading, Button } from "reactstrap";
 import API from "../../utils/API";
 import NavBar from "../../components/Navbar/Navbar";
 import MemberContext from "../../utils/MemberContext";
@@ -13,7 +13,7 @@ const MemberDetails = () => {
   const { memberDetails } = memberDetailState;
 
   useEffect(() => {
-    var member_id = window.location.pathname.split("/")[2].split(".")[0];
+    const member_id = window.location.pathname.split("/")[2].split(".")[0];
     console.log(member_id);
     getOneMember(member_id);
   }, []);
@@ -39,42 +39,44 @@ const MemberDetails = () => {
       });
   };
   return (
-    <MemberContext.Provider value={memberDetailState}>
-      <Container>
+    <>
+    <NavBar />
+    <Container>
         <Row>
           <Col>
-            <NavBar />
           </Col>
         </Row>
+      <MemberContext.Provider value={memberDetailState}>
+        {  memberDetails[0] === undefined ? "not found" : console.log("member:",  memberDetails[0].roles[0].votes_with_party_pct)}
+        <ListGroup>
+          <ListGroupItemHeading>
+            { memberDetails[0] === undefined ? "not found" : memberDetails[0].first_name} { memberDetails[0] === undefined  ? "not found" : memberDetails[0].last_name}:  { memberDetails[0] === undefined  ? "not found" : memberDetails[0].roles[0].title}
+          </ListGroupItemHeading>
 
-        {  memberDetails[0] === undefined  ? "not found" : console.log("member:",  memberDetails[0].roles[0].votes_with_party_pct)}
+            <ListGroupItem tag="a">
+              <img src={memberDetails[0] === undefined ? "not found" : `https://theunitedstates.io/images/congress/225x275/${memberDetails[0].id}.jpg`} alt="congress member"></img>
+            </ListGroupItem>
 
-        <ListGroupItemHeading>
-          <ListGroup>
-            <ListGroupItem tag="a">    <img src={memberDetails[0] === undefined  ? "not found" : `https://theunitedstates.io/images/congress/225x275/${memberDetails[0].id}.jpg`} alt="congress memeber photo"></img>
-            </ListGroupItem>
-            <ListGroupItem tag="a">{ memberDetails[0] === undefined  ? "not found" : memberDetails[0].first_name} { memberDetails[0] === undefined  ? "not found" : memberDetails[0].last_name}:  { memberDetails[0] === undefined  ? "not found" : memberDetails[0].roles[0].title}
-            </ListGroupItem>
             <ListGroupItem tag="a" >
-            Party Affiliation: { memberDetails[0] === undefined  ? "not found" : memberDetails[0].current_party === "R" ? "Repulican" : memberDetails[0].current_party === "D" ? "Democrat" : "Independant"}
+              Party Affiliation: { memberDetails[0] === undefined ? "not found" : memberDetails[0].current_party === "R" ? "Repulican" : memberDetails[0].current_party === "D" ? "Democratic" : "Independant"}
             </ListGroupItem>
-            <ListGroupItem tag="a" href={ memberDetails[0] === undefined  ? "not found" : memberDetails[0].url} action>
+
+            <ListGroupItem tag="a" href={ memberDetails[0] === undefined ? "not found" : memberDetails[0].url} target="blank" action>
             { memberDetails[0] === undefined  ? "not found" : memberDetails[0].url}
             </ListGroupItem>
+
             <ListGroupItem tag="a"> {`Votes with Party: 
-            ${ memberDetails[0] === undefined  ? "not found" : memberDetails[0].roles[0].votes_with_party_pct}%`}
+            ${ memberDetails[0] === undefined ? "not found" : memberDetails[0].roles[0].votes_with_party_pct}%`}
             </ListGroupItem>
+
             <ListGroupItem tag="a"> {`Votes against Party: 
             ${ memberDetails[0] === undefined  ? "not found" : memberDetails[0].roles[0].votes_against_party_pct}%`}
             </ListGroupItem>
-          </ListGroup>
-        </ListGroupItemHeading>
-     
-     
-      <Button onClick={ ()=>{saveMember(memberDetails[0]) } }>Save to Watchlist</Button>
-     
+        </ListGroup>
+        <Button onClick={ ()=>{saveMember(memberDetails[0]) } }>Save to Watchlist</Button>
+        </MemberContext.Provider>
       </Container>
-    </MemberContext.Provider>
+      </>
   );
 };
 
