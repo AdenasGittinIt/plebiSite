@@ -3,6 +3,13 @@ const passport = require("../config/passport");
 
 
 module.exports = function(app) {
+
+
+app.post("/api/user_watchlist", function(req,res){
+  console.log(req.body)
+})
+
+
   app.post(
     "/api/login",
     function(req, res, next) {
@@ -25,6 +32,7 @@ module.exports = function(app) {
     },
     // function to call once successfully authenticated
     function(req, res) {
+      console.log(res.status)
       res.status(200).send("logged in!");
     }
   );
@@ -63,13 +71,3 @@ module.exports = function(app) {
   });
 };
 
-// const APIRoutes = function(app) {
-//   app.get("/api/users", function(req,res) {
-//     db.User.find()
-//     .then(function (response) {
-//       res.json(response)
-//     })
-//   })
-// }
-
-// module.exports = APIRoutes

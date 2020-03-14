@@ -121,3 +121,4 @@ yarn-error.log*
 .npm/
 
 sample.json 
+.env

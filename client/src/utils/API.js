@@ -8,18 +8,14 @@ export default {
         `https://api.propublica.org/congress/v1/116/${chamber}/members.json`,
         { headers: { "X-API-Key": proPubKey } } 
       )
-      // .then(res => {
-      //   const chamberRes = res.data.results[0].chamber
-      //   const { members } = res.data.results[0];
-      // })
       .catch(err => {
         console.log(err);
       });
   },
 
-  getSpecMember: function(member_id) {
+  getOneMember: function(id) {
     return axios.get(
-      `https://api.propublica.org/congress/v1/members/${member_id}.json`,
+      `https://api.propublica.org/congress/v1/members/${id}.json`,
       { headers: { "X-API-Key": proPubKey } }
     )
     .catch(err => {
@@ -27,6 +23,7 @@ export default {
     })
   },
 
-  
-
+  addToWatchlist: function(savedMember) {
+    return axios.post(`/api/user_watchlist`, savedMember)
+  }
 };
