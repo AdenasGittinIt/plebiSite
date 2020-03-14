@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Col, Row, Jumbotron } from "reactstrap";
 import Navbar from "../../components/Navbar/Navbar";
+// import Capitol from "../Home/capitol-blue.png"
 
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
         <Col>
           <Jumbotron>
             <h1 className="display-3 text-center">Welcome to plebiSite!</h1>
+            {/* <img className="center" src={Capitol} alt="capitol dome"/> */}
             <p className="lead text-center">See how well congress represents you</p>
             <hr className="my-2" />
             <p className="lead text-center">Select a branch of congress to explore or log in to view your watchlist</p>
