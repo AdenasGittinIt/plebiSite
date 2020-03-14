@@ -1,25 +1,32 @@
+
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import Login from './components/Login/Login';
+// import LogoButton from './components/LogoButton/LogoButton';
+// import MemberCard from './components/MemberCard/MemberCard'; 
+import MemberDetails from './pages/MemberDetails/MemberDetails'; 
+import MemberListing from './pages/MemberListing/MemberListing'; 
+// import MemberSearch from './components/MemberSearch/MemberSearch'; 
+// import NavBar from "./components/Navbar/Navbar";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm";  
+import SplashPage from "./pages/SplashPage/SplashPage"; 
+import Home from "./pages/Home/Home"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+// import moment from "moment";
+// import sampleData from "./data/sample.json"
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+        <Switch>
+          <Route exact path="/splashpage" component={SplashPage}/>
+          <Route exact path="/" component={Home}/> 
+          <Route exact path="/registration" component={RegistrationForm} />
+          {/* <Route exact path="/login" component={Login} /> */}
+          <Route exact path="/memberlisting/:chamber" component={MemberListing} />
+          <Route exact path="/memberdetails/:id" component={MemberDetails} />
+        </Switch>
+    </Router>
   );
 }
 
